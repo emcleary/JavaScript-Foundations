@@ -124,8 +124,7 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 */
 function variableInterestRate(principal, interestRate, years) {
     for (let I = interestRate-0.02; I < interestRate+0.021; I = I + 0.005) {
-	// roundedInterestRate = Math.round((I + Number.EPSILON)*1000) / 1000;
-	var roundedInterestRate = Number.parseFloat(I).toFixed(3);
+	var roundedInterestRate = I.toFixed(3);
 	var monthlyRate = mortgageCalculator4(principal, roundedInterestRate, years);
 	var monthlyRate = Math.round(monthlyRate);
 	console.log(`${name}, with an interest rate of ${roundedInterestRate}, your monthly rate is \$${monthlyRate}`);
@@ -152,7 +151,7 @@ variableInterestRate(200000, 0.04, 30);
 /* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
 function variableInterestRates(principal, interestRates, years) {
     for (let i = 0; i < interestRates.length; i++) {
-	var roundedInterestRate = Number.parseFloat(interestRates[i]).toFixed(3);
+	var roundedInterestRate = interestRates[i].toFixed(3);
 	var monthlyRate = mortgageCalculator4(principal, roundedInterestRate, years);
 	var monthlyRate = Math.round(monthlyRate);
 	console.log(`${name}, with an interest rate of ${roundedInterestRate}, your monthly rate is \$${monthlyRate}`);
