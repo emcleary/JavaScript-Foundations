@@ -56,10 +56,10 @@ console.log(monthlyRate)
 
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
-function mortgageCalculator() {
+function mortgageCalculator3() {
     return `${name}, your monthly rate is ${monthlyRate}`
 }
-var x = mortgageCalculator();
+var x = mortgageCalculator3();
 console.log(x)
 
 
@@ -69,14 +69,14 @@ console.log(x)
 For example,
 mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
-function mortgageCalculator2(principal, interestRate, years) {
+function mortgageCalculator4(principal, interestRate, years) {
     let P = principal;
     let I = interestRate / 12;
     let N = years * 12;
     let tmp = Math.pow(1 + I, N);
     return P * I * tmp / (tmp - 1); 
 }
-var x = mortgageCalculator2(200000, 0.05, 30);
+var x = mortgageCalculator4(200000, 0.05, 30);
 console.log(x);
 
 
@@ -87,7 +87,7 @@ Then, add control flow within your function such that IF creditScore is above 74
 
 Hint: To drop an interest rate by 5% you can take monthlyRate and multiply it by 0.95. Similarly, to increase an interest rate by 5% you'd do monthlyRate * 1.05. 
 */
-function mortgageCalculator3(principal, interestRate, years, creditScore) {
+function mortgageCalculator5(principal, interestRate, years, creditScore) {
     let P = principal;
     let I = interestRate / 12;
     let N = years * 12;
@@ -101,7 +101,7 @@ function mortgageCalculator3(principal, interestRate, years, creditScore) {
     let tmp = Math.pow(1 + I, N);
     return P * I * tmp / (tmp - 1); 
 }
-var x = mortgageCalculator3(200000, 0.05, 30, 660);
+var x = mortgageCalculator5(200000, 0.05, 30, 660);
 console.log(x);
 
 
@@ -126,7 +126,7 @@ function variableInterestRate(principal, interestRate, years) {
     for (let I = interestRate-0.02; I < interestRate+0.021; I = I + 0.005) {
 	// roundedInterestRate = Math.round((I + Number.EPSILON)*1000) / 1000;
 	var roundedInterestRate = Number.parseFloat(I).toFixed(3);
-	var monthlyRate = mortgageCalculator2(principal, roundedInterestRate, years);
+	var monthlyRate = mortgageCalculator4(principal, roundedInterestRate, years);
 	var monthlyRate = Math.round(monthlyRate);
 	console.log(`${name}, with an interest rate of ${roundedInterestRate}, your monthly rate is \$${monthlyRate}`);
     }
@@ -150,3 +150,13 @@ variableInterestRate(200000, 0.04, 30);
 
 
 /* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
+function variableInterestRates(principal, interestRates, years) {
+    for (let i = 0; i < interestRates.length; i++) {
+	var roundedInterestRate = Number.parseFloat(interestRates[i]).toFixed(3);
+	var monthlyRate = mortgageCalculator4(principal, roundedInterestRate, years);
+	var monthlyRate = Math.round(monthlyRate);
+	console.log(`${name}, with an interest rate of ${roundedInterestRate}, your monthly rate is \$${monthlyRate}`);
+    }
+}
+let interestRatesArray = [0.02,0.025,0.03,0.035,0.04,0.045,0.05,0.055,0.06]
+variableInterestRates(200000, interestRatesArray, 30);
